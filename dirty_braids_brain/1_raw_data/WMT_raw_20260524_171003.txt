@@ -1,0 +1,18 @@
+【美股企业自动抓取财报摘要】
+股票代码: WMT
+企业全称: Walmart Inc.
+行业板块: Consumer Defensive - Discount Stores
+数据抓取时间: 2026-05-24 17:10:03
+----------------------------------------
+【财务核心指标】
+市值 (Market Cap): 958.67 B USD
+滚动市盈率 (Trailing PE): 42.34859
+预测市盈率 (Forward PE): 36.60652
+净利润率 (Profit Margin): 3.14%
+营业利润率 (Operating Margin): 4.32%
+自由现金流 (Free Cash Flow): 6975.37 M USD
+总负债 (Total Debt): 74179.00 M USD
+债务权益比 (Debt to Equity): 73.463
+----------------------------------------
+【官方业务模式描述】
+Walmart Inc. engages in the operation of retail and wholesale stores and clubs, ecommerce websites, and mobile applications worldwide. The company operates through three segments: Walmart U.S., Walmart International, and Sam's Club U.S. It operates supercenters, supermarkets, warehouse clubs, cash and carry stores, and discount stores under Walmart and Walmart Neighborhood Market brands; membership-only warehouse clubs; and ecommerce websites, such as walmart.com.mx, walmart.ca, flipkart.com, PhonePe and other sites. It offers grocery items, including dry grocery, snacks, dairy, meat, produce, deli and bakery, frozen foods, alcoholic and nonalcoholic beverages, as well as consumables, such as health and beauty aids, pet supplies, household chemicals, paper goods, and baby products; and fuel and other categories. In addition, it is involved in the provision of health and wellness products covering pharmacy, optical and hearing services, over-the-counter drugs, and protein and nutrition products; and home, hardlines, and seasonal items, including home improvement, outdoor living, gardening, furniture, apparel, jewelry, tools and power equipment, housewares, toys, and mattresses. Further, the company offers consumer electronics and accessories, software, video games, office supplies, appliances, and third-party gift cards. Additionally, it operates digital payment platforms; offers financial services and related products, including money transfers, bill payments, money orders, check cashing, prepaid access, co-branded credit cards, installment lending, and earned wage access; and markets lines of merchandise under private and licensed brands. The company was formerly known as Wal-Mart Stores, Inc. and changed its name to Walmart Inc. in February 2018. Walmart Inc. was founded in 1945 and is based in Bentonville, Arkansas.
