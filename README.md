@@ -15,16 +15,6 @@
 3. **物理世界哨兵（美国一线体感）**：将华尔街的冷酷数字，与美国工作和生活的实际体感结合。
 ---
 
-## 📄 Resume Highlights (简历亮点)
-
-如果您要在英文简历中呈现本项目，可以使用以下精炼且极具说服力的核心要点（Bullet Points）：
-
-*   **Architected and developed a modular, agentic AI content pipeline ("Dirty Braids Brain")** using Python and the Google GenAI SDK, orchestrating raw macroeconomic and financial data ingestion, structured business analysis (Buffett's moat & liquidity frameworks), and high-conversion video script generation.
-*   **Engineered a dynamic contrastive few-shot learning and context-grounding framework** to eliminate generic "AI filler text" and hallucinations; designed a pipeline that automatically pairs historical AI draft scripts ($V_1$) with human-revised versions ($V_2$) to continuously refine the LLM's output toward a natural, high-information-density colloquial persona.
-*   **Implemented a closed-loop multimodal performance audit engine** leveraging Gemini’s native audio understanding to correlate raw video audio with audience retention analytics (e.g., 5-second drop-off rates); automatically diagnosed speech pacing and tone, writing back actionable rules to a persistent "Master Rulebook" config to enable continuous self-evolution.
-
----
-
 ## 📁 目录结构 (Directory Architecture)
 
 ```bash
