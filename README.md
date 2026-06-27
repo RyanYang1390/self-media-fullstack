@@ -12,7 +12,16 @@
 ### 🛡 核心三大支柱：
 1. **巴菲特价值投资思想（底层心法）**：深度剖析商业模式（收租型 Tollbooth）、护城河（网络效应、转换成本）以及管理层的利益一致性。
 2. **宏观流动性总水闸（流动性水位）**：紧密跟踪 FOMC 决议、CPI/PCE 粘性通胀、非农数据与密歇根消费信心指数，锁定安全边际。
-3. **物理世界哨兵（美国一线体感）**：将华尔街的冷酷数字，与加州湾区 Costco 的促销、洛杉矶码头的卡车排队时长、以及硅谷真实的裁员体感有机对撞。
+3. **物理世界哨兵（美国一线体感）**：将华尔街的冷酷数字，与美国工作和生活的实际体感结合。
+---
+
+## 📄 Resume Highlights (简历亮点)
+
+如果您要在英文简历中呈现本项目，可以使用以下精炼且极具说服力的核心要点（Bullet Points）：
+
+*   **Architected and developed a modular, agentic AI content pipeline ("Dirty Braids Brain")** using Python and the Google GenAI SDK, orchestrating raw macroeconomic and financial data ingestion, structured business analysis (Buffett's moat & liquidity frameworks), and high-conversion video script generation.
+*   **Engineered a dynamic contrastive few-shot learning and context-grounding framework** to eliminate generic "AI filler text" and hallucinations; designed a pipeline that automatically pairs historical AI draft scripts ($V_1$) with human-revised versions ($V_2$) to continuously refine the LLM's output toward a natural, high-information-density colloquial persona.
+*   **Implemented a closed-loop multimodal performance audit engine** leveraging Gemini’s native audio understanding to correlate raw video audio with audience retention analytics (e.g., 5-second drop-off rates); automatically diagnosed speech pacing and tone, writing back actionable rules to a persistent "Master Rulebook" config to enable continuous self-evolution.
 
 ---
 
@@ -46,7 +55,7 @@ dirty_braids_brain/
 自动获取或读取宏观、微观及企业财报的 raw 文本（如 Walmart、Hims 等数据），并根据 `config/frameworks.md` 的商业框架，提取出具有物理体感的关键数据指标，输出到 `1_raw_data/` 及 `2_core_essence/`。
 
 ### 2. 人设级文案生成 (`generate_script.py`)
-加载 `config/persona.md` 与 `config/Master_Rulebook.md`，使用大语言模型（如 Gemini 3.5）进行多轮深度推理，规避八股文，采用“黄金5秒起手式”生成短句、高密度、第一人称体感的视频口语脚本，输出到 `3_history_scripts/`。
+加载 `config/persona.md` 与 `config/Master_Rulebook.md`，使用大语言模型进行多轮深度推理。在生成环节中，系统会自动整合**抖音视频流量包装套餐（包含 6-8 字的手机屏大字封面文字、富含悬念但绝不哗众取宠的吸睛发布标题、以及 5 个高流量精准 Hashtags）**，既保障高点击率与引流效果，又严守客观事实与知识诚实，最后生成短句、高密度、第一人称口播视频脚本，自动归档输出到 `3_history_scripts/`。
 
 ### 3. 多模态诊断与审计 (`audit_performance.py`)
 对生成的初稿脚本进行无情审计，彻底扫描并清除任何漏网的 “AI 标志性词汇”，计算信息密度，对视频节奏进行微调，并将复盘经验写回 `5_audit_reports/` 与长期法典，实现系统的**自我进化**。

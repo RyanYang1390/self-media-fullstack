@@ -9,7 +9,7 @@
     - 接受本地音频文件路径，以及视频表现数据 (包含完播率、播放量、前5秒流失率等指标)
     - 兼容调用 Google GenAI 最新 SDK (上传音频文件) 进行多模态长上下文分析
     - 模型根据音频表达节奏、语气语调，对照流失率数据，生成带有精准时间戳的“表达诊断报告”
-    - 自动将复盘诊断报告存储至 4_audit_reports/ 目录，形成“内容-表现-认知”的双向反馈闭环
+    - 自动将复盘诊断报告存储至 5_audit_reports/ 目录，形成“内容-表现-认知”的双向反馈闭环
 """
 
 import os
@@ -52,19 +52,30 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 try:
     from google import genai
     from google.genai import types
-    GEMINI_METHOD = "new_sdk"
+    NEW_SDK_AVAILABLE = True
 except ImportError:
-    try:
-        import google.generativeai as genai_legacy
-        GEMINI_METHOD = "legacy_sdk"
-    except ImportError:
-        GEMINI_METHOD = "unavailable"
+    NEW_SDK_AVAILABLE = False
+
+# 2. 尝试导入传统的 google-generativeai SDK
+try:
+    import google.generativeai as genai_legacy
+    LEGACY_SDK_AVAILABLE = True
+except ImportError:
+    LEGACY_SDK_AVAILABLE = False
+
+# 3. 抉择最优的调用通道
+if NEW_SDK_AVAILABLE:
+    GEMINI_METHOD = "new_sdk"
+elif LEGACY_SDK_AVAILABLE:
+    GEMINI_METHOD = "legacy_sdk"
+else:
+    GEMINI_METHOD = "unavailable"
 
 
 def setup_directories():
     """确保所需的本地目录均已创建"""
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    reports_dir = os.path.join(base_dir, "4_audit_reports")
+    reports_dir = os.path.join(base_dir, "5_audit_reports")
     os.makedirs(reports_dir, exist_ok=True)
     return reports_dir
 
@@ -162,7 +173,7 @@ def call_gemini_audio_audit(audio_path, metrics_data, system_instruction, user_p
         except Exception as e:
             print(f"[-] 全新 SDK 上传音频失败 ({e})，正在尝试经典 SDK...")
             
-    if GEMINI_METHOD == "legacy_sdk" or GEMINI_METHOD == "new_sdk":
+    if LEGACY_SDK_AVAILABLE:
         print(f"[+] 正在使用经典 google-generativeai 上传本地音频: {audio_path}")
         try:
             genai_legacy.configure(api_key=GEMINI_API_KEY)
@@ -191,7 +202,7 @@ def call_gemini_audio_audit(audio_path, metrics_data, system_instruction, user_p
         except Exception as e:
             print(f"[-] 经典接口上传音频亦失败 ({e})。自动降级至 Mock 模式...")
     else:
-        print("[-] 未检测到 Google AI Python 依赖包。即将为您展示高质量的 Mock 复盘诊断报告。")
+        print("[-] 未检测到经典 Google AI 依赖包。即将为您展示高质量的 Mock 复盘诊断报告。")
 
     return get_mock_audit_report(metrics_data)
 
@@ -351,7 +362,7 @@ def main():
     print("\n" + "="*40 + " [多模态音频与数据复盘诊断报告] " + "="*40)
     print(audit_report)
     print("="*109)
-    print(f"[+] 复盘诊断报告已自动保存至: 4_audit_reports/{report_filename}")
+    print(f"[+] 复盘诊断报告已自动保存至: 5_audit_reports/{report_filename}")
 
 
 if __name__ == "__main__":

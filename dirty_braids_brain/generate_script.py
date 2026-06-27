@@ -58,16 +58,28 @@ load_env_file()
 GEMINI_METHOD = None
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
+# 1. 尝试导入最新的 google-genai SDK
 try:
     from google import genai
     from google.genai import types
-    GEMINI_METHOD = "new_sdk"
+    NEW_SDK_AVAILABLE = True
 except ImportError:
-    try:
-        import google.generativeai as genai_legacy
-        GEMINI_METHOD = "legacy_sdk"
-    except ImportError:
-        GEMINI_METHOD = "unavailable"
+    NEW_SDK_AVAILABLE = False
+
+# 2. 尝试导入传统的 google-generativeai SDK
+try:
+    import google.generativeai as genai_legacy
+    LEGACY_SDK_AVAILABLE = True
+except ImportError:
+    LEGACY_SDK_AVAILABLE = False
+
+# 3. 抉择最优的调用通道
+if NEW_SDK_AVAILABLE:
+    GEMINI_METHOD = "new_sdk"
+elif LEGACY_SDK_AVAILABLE:
+    GEMINI_METHOD = "legacy_sdk"
+else:
+    GEMINI_METHOD = "unavailable"
 
 
 def load_config_file(filepath):
@@ -273,7 +285,7 @@ def call_gemini_api(system_instruction, user_prompt):
         except Exception as e:
             print(f"[-] 调用最新 SDK 失败 ({e})，正在尝试回退至经典 SDK...")
 
-    if GEMINI_METHOD == "legacy_sdk" or GEMINI_METHOD == "new_sdk":
+    if LEGACY_SDK_AVAILABLE:
         print("[+] 正在使用经典 google-generativeai 接口与 Gemini 2.5 Flash 通信...")
         try:
             genai_legacy.configure(api_key=GEMINI_API_KEY)
@@ -442,10 +454,15 @@ def main():
 ========================================================================
 
 【你现在的具体写作任务】：
-请你严格输出两个部分，格式必须清晰对齐：
+请你严格输出三个部分，格式必须清晰对齐：
 
-1. 一份可以直接面对镜头录音的视频逐字口播稿（直接进入正题，以 Master Rulebook 里的黄金起手式开头，彻底消灭 AI 腔调）。
-2. 从中提炼出 3 条纯粹的 Markdown 格式“硬核投资认知卡片”。
+1. **抖音/短视频高流量流量包装套餐**（直接输出在文案最开头）：
+   *   **双重核心原则**：所有包装（封面文字、标题、Hashtags）的第一核心目的是**吸引海量公域流量、提高点击率（CTR）**；但第二核心原则是**必须严守知识诚实与事实，绝对不能为了流量而哗众取宠、夸大其词、无底线制造焦虑或罔顾客观事实**。
+   *   **视频封面文字**：主打强烈物理痛点或微观冲突对比，严格控制在 6 - 8 字，适合在手机屏幕上大字呈现，吸睛但严守事实，拒绝垃圾自媒体噱头。
+   *   **吸睛发布标题**：采用“逻辑因果冲突”或“反常识设问”，极具悬念和信息量，激发高净值中产的求知欲，拒绝危言耸听的标题党。
+   *   **5 个高流量精准 Hashtags**：严格按照“2个宏观大流量池标签 + 2个硬核题材/个股垂直标签 + 1个IP属性标签”的矩阵输出。
+2. 一份可以直接面对镜头录音的视频逐字口播稿（直接进入正题，以 Master Rulebook 里的黄金起手式开头，彻底消灭 AI 腔调）。
+3. 从中提炼出 3 条纯粹的 Markdown 格式“硬核投资认知卡片”。
 
 【认知卡片格式容错规范】：
 每一条认知卡片，必须严格、单独使用 `<CognitiveCard>` 和 `</CognitiveCard>` 标签包裹起来。例如：
